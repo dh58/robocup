@@ -1,0 +1,53 @@
+DWAPlannerROS:
+
+  # Robot Configuration Parameters - Kobuki
+  max_vel_x: 0.3  # m/s, typical max speed for Kobuki
+  min_vel_x: 0.0  # m/s, prevents the robot from stopping completely, ensuring forward motion
+
+  max_vel_y: 0.0   # diff drive robot, no lateral movement
+  min_vel_y: 0.0   # diff drive robot, no lateral movement
+
+  max_vel_trans: 0.5  # m/s, aligned with the max linear velocity
+  min_vel_trans: 0.1  # m/s, ensures minimal translational movement
+  trans_stopped_vel: 0.05 # m/s, lower threshold for when the robot is considered stopped
+  escape_velocities: true
+
+
+  # Rotational velocities based on Kobuki's joint limits
+  max_vel_theta: 1.5  # rad/s, increased for faster turns while within safe limits
+  min_vel_theta: 0.2  # rad/s, ensures the robot turns with minimal angular velocity
+  theta_stopped_vel: 0.1 # rad/s, threshold for when rotation is considered stopped
+  
+  acc_lim_x: 0.8 # m/s^2, higher acceleration for quicker speed changes
+  acc_lim_theta: 3.0 # rad/s^2, faster rotational acceleration for agility
+  acc_lim_y: 0.0 # diff drive robot, no lateral acceleration
+
+  # Goal Tolerance Parameters
+  yaw_goal_tolerance: 0.03  # rad, tighter tolerance for precise goal orientation
+  xy_goal_tolerance: 0.05  # m, closer tolerance for goal position
+
+  # Forward Simulation Parameters
+  sim_time: 1.0  # s, reduce simulation time for quicker responses
+  vx_samples: 7  # increased for better trajectory resolution
+  vy_samples: 1   # diff drive robot, no lateral velocity samples
+  vtheta_samples: 25  # more rotational samples for smoother turning
+
+  # Trajectory Scoring Parameters
+  path_distance_bias: 18.0      # higher weight for following the global path
+  goal_distance_bias: 15.0      # increased weight for goal-seeking behavior
+  occdist_scale: 0.18           # obstacle avoidance weight, reduced to balance path following and obstacle avoidance
+  forward_point_distance: 0.325 # m, distance from the robot center to the forward point in the local plan
+  stop_time_buffer: 0.2         # s, reduced to allow quicker stopping
+  scaling_speed: 0.25            # m/s, moderate scaling of speed to prevent abrupt changes
+  max_scaling_factor: 0.2       # slightly higher for more flexibility in scaling velocities
+
+  # Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.1 # m, lowered to prevent minor oscillations
+  
+  escape_velocities: true    # Allow escape velocities
+
+  # Debugging
+  publish_traj_pc: true
+  publish_cost_grid_pc: true
+  global_frame_id: odom
+

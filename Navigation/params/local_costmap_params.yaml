@@ -1,0 +1,30 @@
+local_costmap:
+  global_frame: odom
+  robot_base_frame: base_footprint
+  update_frequency: 10.0 # Lowered to reduce computational load
+  publish_frequency: 10.0 # Lowered to reduce network traffic
+  static_map: false
+  rolling_window: true
+  width: 3.0 # Kept small for tight navigation
+  height: 3.0
+  resolution: 0.03
+  transform_tolerance: 0.25 # Tight transform tolerance for responsive behavior
+  obstacle_range: 1.5 # Increased to allow the robot to consider slightly further obstacles
+  raytrace_range: 3.0
+  allow_unknown: false
+
+  plugins:
+  - {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"}
+  - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+  obstacle_layer:
+    observation_sources: laser_scan
+    laser_scan:
+      data_type: LaserScan
+      topic: /scan
+      marking: true
+      clearing: true
+  inflation_layer:
+    inflation_radius: 0.6 # Increased for safer navigation
+    cost_scaling_factor: 2.0 # Slightly increased to prevent close navigation to obstacles
+

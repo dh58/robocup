@@ -1,0 +1,50 @@
+# Common costmap configuration
+
+# Robot Dimensions
+footprint: [[-0.18, -0.18], [-0.18, 0.18], [0.18, 0.18], [0.18, -0.18]]
+footprint_padding: 0.01  # Padding to ensure the robot avoids obstacles
+
+robot_base_frame: base_link
+update_frequency: 5.0 #default value, can be override
+publish_frequency: 2.0 
+transform_tolerance: 0.1 #0.5
+
+resolution: 0.05  # Map resolution in meters
+
+obstacle_range: 0.5  # Maximum distance to consider for obstacles
+raytrace_range: 4.0  # Maximum distance for ray tracing
+
+# Layer Definitions
+static:
+  map_topic: /map
+  subscribe_to_updates: true
+
+obstacle_layer:
+  enabled: true
+  max_obstacle_height: 0.60
+  origin_z: 0.0
+  z_resolution: 0.2
+  z_voxels: 2
+  unknown_threshold: 15
+  mark_threshold: 0
+  combination_method: 1
+  track_unknown_space: true
+  obstacle_range: 1.0 #prev 2.0
+  raytrace_range: 3.0
+  observation_sources: scan
+  scan:
+    data_type: LaserScan
+    topic: scan
+    marking: true
+    clearing: true
+    min_obstacle_height: 0.25
+    max_obstacle_height: 0.35
+
+inflation_layer:
+  enabled: true #false #true
+  cost_scaling_factor: 3.0 #5
+  inflation_radius: 0.5
+
+static_layer: #use of predefined map
+  enabled: true
+
