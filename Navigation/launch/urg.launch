@@ -1,9 +1,13 @@
 <launch>
   <!-- Hokuyo LIDAR Node -->
-  <node pkg="urg_node" type="urg_node" name="hokuyo_node">
-    <param name="frame_id" value="laser"/>
-    <param name="port" value="/dev/ttyACM0"/>
-  </node>
+    <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
+        <param name="serial_port" value="/dev/ttyACM0"/>
+        <param name="serial_baud" value="115200"/>
+        <param name="frame_id" value="laser"/>
+        <param name="calibrate_time" value="true"/>
+        <!-- Other parameters -->
+    </node>
+
 
   <!-- Static Transform for LIDAR -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="laser_to_base_link"
