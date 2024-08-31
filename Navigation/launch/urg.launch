@@ -1,0 +1,12 @@
+<launch>
+  <!-- Hokuyo LIDAR Node -->
+  <node pkg="urg_node" type="urg_node" name="hokuyo_node">
+    <param name="frame_id" value="laser"/>
+    <param name="port" value="/dev/ttyACM0"/>
+  </node>
+
+  <!-- Static Transform for LIDAR -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="laser_to_base_link"
+        args="0.1 0 0.2 0 0 0 base_link laser" />
+  <!-- args are x y z yaw pitch roll parent_frame child_frame -->
+</launch>
