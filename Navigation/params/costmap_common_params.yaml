@@ -4,7 +4,7 @@
 footprint: [[-0.18, -0.18], [-0.18, 0.18], [0.18, 0.18], [0.18, -0.18]]
 footprint_padding: 0.01  # Padding to ensure the robot avoids obstacles
 
-robot_base_frame: base_link
+robot_base_frame: base_footprint
 update_frequency: 5.0 #default value, can be override
 publish_frequency: 2.0 
 transform_tolerance: 0.1 #0.5
